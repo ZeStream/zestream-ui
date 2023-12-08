@@ -1,5 +1,14 @@
-import './globals.css';
+// components
+import { Providers } from './providers';
+
+// defs
 import type { Metadata } from 'next';
+
+// styles
+import '@radix-ui/themes/styles.css';
+import './globals.css';
+
+// fonts
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -15,9 +24,14 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+                <Providers>
+                    {children}
+                </Providers>
+            </body>
         </html>
     );
 }

@@ -1,19 +1,24 @@
-// styles
-import styles from './page.module.css';
-import '@radix-ui/themes/styles.css';
+"use client"
 
 // components
 import Main from '@/layouts/Main/Main';
-import { Theme } from '@radix-ui/themes';
+
+// next
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
+
 
 export default function Home() {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.replace('/files');
+    });
+
     return (
-        <Theme appearance="dark">
-            <main className={styles.main}>
-                <Main>
-                    <h1>Hello</h1>
-                </Main>
-            </main>
-        </Theme>
+        <Main>
+            <h1>Loading...</h1>
+        </Main>
     );
 }

@@ -9,7 +9,7 @@ import { Box, Flex } from '@radix-ui/themes';
 import Header from '@/components/Header';
 
 interface IProps {
-    children: React.ReactElement;
+    children: React.ReactNode;
 }
 
 export default function Main({ children }: IProps) {
