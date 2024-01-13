@@ -1,18 +1,18 @@
 export const SIDEBAR_NAVs = [
     {
         href: "files",
-        title: "Files"
+        title: "Files",
     },
     {
         href: "payments",
-        title: "Payments"
+        title: "Payments",
     },
     {
         href: "analytics",
-        title: "Analytics"
+        title: "Analytics",
     },
     {
         href: "settings",
-        title: "Settings"
-    }
-]
+        title: "Settings",
+    },
+];
