@@ -10,43 +10,6 @@ hr {
     background-color: gray;
 }
 
-.folderBox-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.fileBox-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.folders::-webkit-scrollbar {
-    width: 5px;
-}
-
-.folders::-webkit-scrollbar-thumb {
-    background-color: #303df3;
-    border-radius: 6px;
-}
-
-.folders::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.files::-webkit-scrollbar {
-    width: 5px;
-}
-
-.files::-webkit-scrollbar-thumb {
-    background-color: #303df3;
-    border-radius: 6px;
-}
-
-.files::-webkit-scrollbar-track {
-    background-color: transparent;
-}
 .deleteDialogBox {
     background-color: #1b1f55;
     height: 110px;
@@ -68,15 +31,4 @@ hr {
 
 .deleteDialogBox__buttons Button {
     margin-left: 10px;
-}
-
-.file-name {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 120px;
-}
-
-.file-name a:hover {
-    white-space: normal;
 }
