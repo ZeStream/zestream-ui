@@ -1,8 +1,7 @@
 "use client"
 
 // components
-import Main from '@/layouts/Main/Main';
-
+import Main from '@/layouts/Main';
 // next
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';

@@ -1,3 +1,10 @@
+"use client"
+import Login from "../login/page";
 export default function Files() {
-    return <>Files</>
+
+    return (
+        <>
+            <h1>Files</h1>
+        </>
+    );
 }

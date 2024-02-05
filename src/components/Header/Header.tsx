@@ -1,7 +1,8 @@
 "use client"
 // styles
 import styles from "./Header.module.css"
-
+import Link from "next/link";
+import { Button } from "@radix-ui/themes";
 // widgets
 import { Avatar, Flex, IconButton, Text } from "@radix-ui/themes";
 
@@ -25,6 +26,11 @@ export default function Header() {
             <Text as="p">
                 ZeStream
             </Text>
+            <Button>
+        <Link href="/login">
+            Login
+            </Link>
+            </Button>
 
             <Flex gap="3">
                 <IconButton onClick={toggleTheme}>

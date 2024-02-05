@@ -1,8 +1,7 @@
 'use client';
 
 // state
-import { useThemeStore } from '@/context/ThemeState';
-
+import { useThemeStore } from "@/context/ThemeState";
 // radix
 import { Theme } from "@radix-ui/themes";
 

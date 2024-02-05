@@ -2,7 +2,6 @@
 
 // libs
 import { classNames } from '@/lib/classNames';
-
 // components
 import NextLink from 'next/link';
 
