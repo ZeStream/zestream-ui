@@ -1,5 +1,34 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: gray;
+}
+
+.deleteDialogBox {
+    background-color: #1b1f55;
+    height: 110px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 32vw;
+    border-radius: 10px;
+}
+.deleteDialogBox p {
+    padding: 5px;
+    margin-top: 10px;
+    color: #fff;
+}
+.deleteDialogBox__buttons {
+    margin-top: 5%;
+}
+
+.deleteDialogBox__buttons Button {
+    margin-left: 10px;
 }

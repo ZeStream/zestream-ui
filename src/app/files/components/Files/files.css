@@ -1,0 +1,27 @@
+.file-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+.file-name a:hover {
+    white-space: normal;
+}
+.files::-webkit-scrollbar {
+    width: 5px;
+}
+
+.files::-webkit-scrollbar-thumb {
+    background-color: #303df3;
+    border-radius: 6px;
+}
+
+.files::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.fileBox-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,18 @@
+.folderBox-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.folders::-webkit-scrollbar {
+    width: 5px;
+}
+
+.folders::-webkit-scrollbar-thumb {
+    background-color: #303df3;
+    border-radius: 6px;
+}
+
+.folders::-webkit-scrollbar-track {
+    background-color: transparent;
+}
