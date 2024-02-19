@@ -1,23 +1,26 @@
-import Audio from "@/app/svg/FilesSVG/Audio";
-import ImageIcon from "@/app/svg/FilesSVG/Image";
-import Video from "@/app/svg/FilesSVG/Video";
-import FileSvg from "@/app/svg/FilesSVG/File";
+"use client";
+
+import dynamic from "next/dynamic";
+const Audio = dynamic(() => import("@/app/svg/FilesSVG/Audio"), { ssr: false });
+const ImageIcon = dynamic(() => import("@/app/svg/FilesSVG/Image"), {
+    ssr: false,
+});
+const Video = dynamic(() => import("@/app/svg/FilesSVG/Video"), { ssr: false });
+const FileSvg = dynamic(() => import("@/app/svg/FilesSVG/File"), {
+    ssr: false,
+});
 import { Box, Button } from "@radix-ui/themes";
 import { UploadIcon, TrashIcon } from "@radix-ui/react-icons";
 import { useState, useEffect } from "react";
 import "./files.css";
+import FileSidebar from "./fileSidebar/FileSidebar";
 
 export default function FilesSection() {
-    const [createdFiles, setCreatedFiles] = useState<File[]>(() => {
-        if (typeof window !== "undefined") {
-            const storedFiles = localStorage.getItem("createdFiles");
-            return storedFiles ? JSON.parse(storedFiles) : [];
-        }
-        return [];
-    });
+    const [createdFiles, setCreatedFiles] = useState<File[]>([]);
     const [checkedFiles, setCheckedFiles] = useState<boolean[]>([]);
     const [deleteType, setDeleteType] = useState("");
     const [DeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
     const handleFilesCheckboxChange = (index: number) => {
         const newCheckedFiles = [...checkedFiles];
@@ -79,7 +82,7 @@ export default function FilesSection() {
         fileInput?.click();
     };
     const handleDeleteConfirm = (type: string) => {
-        if (type === "folders") {
+        if (type === "files") {
             const newFiles = createdFiles.filter(
                 (_, index) => !checkedFiles[index]
             );
@@ -92,6 +95,10 @@ export default function FilesSection() {
 
     const handleDeleteCancel = (deleteType: string) => {
         setDeleteDialogOpen(false);
+    };
+
+    const handleFileDoubleClick = () => {
+        setIsSidebarOpen(!isSidebarOpen);
     };
     return (
         <>
@@ -147,6 +154,7 @@ export default function FilesSection() {
                 {createdFiles.map((file, index) => (
                     <Box
                         key={index}
+                        onDoubleClick={handleFileDoubleClick}
                         style={{ marginRight: 10, marginBottom: 10 }}
                     >
                         {file && file.type && file.type.startsWith("image/") ? (
@@ -179,12 +187,11 @@ export default function FilesSection() {
                             />
                             <div className="file-name">
                                 <a
-                                    href={URL.createObjectURL(
-                                        new File([file], "filename")
-                                    )}
+                                    href={URL.createObjectURL(file)}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    title={file.name}
+                                    title={file.name || ""}
+                                    data-file-name={file.name}
                                 >
                                     {file.name?.length > 9
                                         ? `${file.name.substring(0, 9)}...`
@@ -192,25 +199,45 @@ export default function FilesSection() {
                                 </a>
                             </div>
                         </div>
+                        {isSidebarOpen && (
+                            <FileSidebar
+                                key={file.name} // Ensure each FileSidebar has a unique key
+                                name={file.name}
+                                type={file.type}
+                                size={file.size}
+                                lastmodified={file.lastModified}
+                            />
+                        )}
                     </Box>
                 ))}
+
+                {/* {isSidebarOpen && (
+                    <FileSidebar name="hello" type="image" size="100kb" />
+                )} */}
                 {DeleteDialogOpen && (
-                    <div className="deleteDialogBox">
-                        <p>{`Do you want to delete selected ${deleteType} ?`}</p>
-                        <div className="deleteDialogBox__buttons">
-                            <Button
-                                onClick={() => handleDeleteConfirm(deleteType)}
-                            >
-                                Confirm
-                            </Button>
-                            <Button
-                                onClick={() => handleDeleteCancel(deleteType)}
-                            >
-                                Cancel
-                            </Button>
+                    <div className="deleteDialogOverlay">
+                        <div className="deleteDialogBox">
+                            <p>{`Do you want to delete selected ${deleteType} ?`}</p>
+
+                            <div className="deleteDialogBox__buttons">
+                                <Button
+                                    onClick={() =>
+                                        handleDeleteConfirm(deleteType)
+                                    }
+                                >
+                                    Confirm
+                                </Button>
+                                <Button
+                                    onClick={() =>
+                                        handleDeleteCancel(deleteType)
+                                    }
+                                >
+                                    Cancel
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                )}{" "}
+                )}
             </Box>
         </>
     );

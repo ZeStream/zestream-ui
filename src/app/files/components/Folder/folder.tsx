@@ -192,19 +192,25 @@ export default function Folders() {
                     </Box>
                 ))}
                 {DeleteDialogOpen && (
-                    <div className="deleteDialogBox">
-                        <p>{`Do you want to delete selected ${deleteType} ?`}</p>
-                        <div className="deleteDialogBox__buttons">
-                            <Button
-                                onClick={() => handleDeleteConfirm(deleteType)}
-                            >
-                                Confirm
-                            </Button>
-                            <Button
-                                onClick={() => handleDeleteCancel(deleteType)}
-                            >
-                                Cancel
-                            </Button>
+                    <div className="deleteDialogOverlay">
+                        <div className="deleteDialogBox">
+                            <p>{`Do you want to delete selected ${deleteType} ?`}</p>
+                            <div className="deleteDialogBox__buttons">
+                                <Button
+                                    onClick={() =>
+                                        handleDeleteConfirm(deleteType)
+                                    }
+                                >
+                                    Confirm
+                                </Button>
+                                <Button
+                                    onClick={() =>
+                                        handleDeleteCancel(deleteType)
+                                    }
+                                >
+                                    Cancel
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 )}{" "}

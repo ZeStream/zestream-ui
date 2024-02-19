@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import "../globals.css";
 
 import Folders from "./components/Folder/folder";
