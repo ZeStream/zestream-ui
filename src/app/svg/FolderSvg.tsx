@@ -1,4 +1,10 @@
-const FolderSvg = () => {
+import React, { MouseEventHandler } from "react";
+
+interface FolderSvgProps {
+    onDoubleClick: MouseEventHandler<SVGSVGElement>;
+}
+
+const FolderSvg: React.FC<FolderSvgProps> = ({ onDoubleClick }) => {
     return (
         <div>
             <svg
@@ -7,6 +13,7 @@ const FolderSvg = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                onDoubleClick={onDoubleClick}
             >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g

@@ -3,6 +3,7 @@ import { Box, Flex, Button, Dialog, TextField } from "@radix-ui/themes";
 import FolderSvg from "@/app/svg/FolderSvg";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import "./folder.css";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Folders() {
     const [newFolderName, setNewFolderName] = useState<string>("");
@@ -19,6 +20,9 @@ export default function Folders() {
     const [checkedFolders, setCheckedFolders] = useState<boolean[]>([]);
     const [DeleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [deleteType, setDeleteType] = useState("");
+
+    const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -83,6 +87,14 @@ export default function Folders() {
 
     const handleDeleteCancel = (deleteType: string) => {
         setDeleteDialogOpen(false);
+    };
+
+    const handleFolderDoubleClick = (folderName: string) => {
+        alert(`Folder Double Clicked: ${folderName}`);
+
+        const cleanFolderName = folderName.replace(/^\/|\/$/g, "");
+        // Navigate to the new path by attaching current pathname
+        router.push(`${pathname}/${cleanFolderName}`);
     };
     return (
         <>
@@ -172,7 +184,11 @@ export default function Folders() {
                             flexDirection: "column",
                         }}
                     >
-                        <FolderSvg />
+                        <FolderSvg
+                            onDoubleClick={() =>
+                                handleFolderDoubleClick(folderName)
+                            }
+                        />
 
                         <div
                             style={{
