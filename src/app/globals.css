@@ -12,12 +12,12 @@ hr {
 
 .deleteDialogBox {
     background-color: #1b1f55;
-    height: 110px;
-    width: 320px;
+    height: 14vh;
+    width: 16vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 32vw;
+    /* margin-left: 32vw; */
     border-radius: 10px;
 }
 .deleteDialogBox p {
@@ -27,8 +27,11 @@ hr {
 }
 .deleteDialogBox__buttons {
     margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    width: 55%;
 }
 
 .deleteDialogBox__buttons Button {
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
