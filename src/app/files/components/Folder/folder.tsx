@@ -5,7 +5,7 @@ import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import "./folder.css";
 import { useRouter, usePathname } from "next/navigation";
 
-export default function Folders() {
+export default function FolderSection() {
     const [newFolderName, setNewFolderName] = useState<string>("");
     const [isFolderCreated, setIsFolderCreated] = useState<boolean>(false);
     const [createdFolder, setCreatedFolder] = useState<string[]>(() => {
@@ -92,7 +92,12 @@ export default function Folders() {
     const handleFolderDoubleClick = (folderName: string) => {
         alert(`Folder Double Clicked: ${folderName}`);
 
+        alert(`Folder Double Clicked: ${folderName}`);
+
         const cleanFolderName = folderName.replace(/^\/|\/$/g, "");
+        console.log("Cleaned Folder Name:", cleanFolderName);
+        console.log("Current Pathname:", pathname);
+
         // Navigate to the new path by attaching current pathname
         router.push(`${pathname}/${cleanFolderName}`);
     };
