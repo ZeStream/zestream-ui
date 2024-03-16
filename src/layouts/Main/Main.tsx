@@ -1,12 +1,12 @@
 // components
-import Sidebar from '@/components/Sidebar';
+import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 
 // styles
-import styles from './Main.module.css';
+import styles from "./Main.module.css";
 
 // radix-ui
-import { Box, Flex } from '@radix-ui/themes';
-import Header from '@/components/Header';
+import { Box, Flex } from "@radix-ui/themes";
 
 interface IProps {
     children: React.ReactNode;

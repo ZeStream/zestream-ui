@@ -3,8 +3,9 @@ import { Box, Flex, Button, Dialog, TextField } from "@radix-ui/themes";
 import FolderSvg from "@/app/svg/FolderSvg";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import "./folder.css";
+import { useRouter, usePathname } from "next/navigation";
 
-export default function Folders() {
+export default function FolderSection() {
     const [newFolderName, setNewFolderName] = useState<string>("");
     const [isFolderCreated, setIsFolderCreated] = useState<boolean>(false);
     const [createdFolder, setCreatedFolder] = useState<string[]>(() => {
@@ -19,6 +20,9 @@ export default function Folders() {
     const [checkedFolders, setCheckedFolders] = useState<boolean[]>([]);
     const [DeleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [deleteType, setDeleteType] = useState("");
+
+    const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -83,6 +87,19 @@ export default function Folders() {
 
     const handleDeleteCancel = (deleteType: string) => {
         setDeleteDialogOpen(false);
+    };
+
+    const handleFolderDoubleClick = (folderName: string) => {
+        alert(`Folder Double Clicked: ${folderName}`);
+
+        alert(`Folder Double Clicked: ${folderName}`);
+
+        const cleanFolderName = folderName.replace(/^\/|\/$/g, "");
+        console.log("Cleaned Folder Name:", cleanFolderName);
+        console.log("Current Pathname:", pathname);
+
+        // Navigate to the new path by attaching current pathname
+        router.push(`${pathname}/${cleanFolderName}`);
     };
     return (
         <>
@@ -172,7 +189,11 @@ export default function Folders() {
                             flexDirection: "column",
                         }}
                     >
-                        <FolderSvg />
+                        <FolderSvg
+                            onDoubleClick={() =>
+                                handleFolderDoubleClick(folderName)
+                            }
+                        />
 
                         <div
                             style={{
@@ -192,19 +213,25 @@ export default function Folders() {
                     </Box>
                 ))}
                 {DeleteDialogOpen && (
-                    <div className="deleteDialogBox">
-                        <p>{`Do you want to delete selected ${deleteType} ?`}</p>
-                        <div className="deleteDialogBox__buttons">
-                            <Button
-                                onClick={() => handleDeleteConfirm(deleteType)}
-                            >
-                                Confirm
-                            </Button>
-                            <Button
-                                onClick={() => handleDeleteCancel(deleteType)}
-                            >
-                                Cancel
-                            </Button>
+                    <div className="deleteDialogOverlay">
+                        <div className="deleteDialogBox">
+                            <p>{`Do you want to delete selected ${deleteType} ?`}</p>
+                            <div className="deleteDialogBox__buttons">
+                                <Button
+                                    onClick={() =>
+                                        handleDeleteConfirm(deleteType)
+                                    }
+                                >
+                                    Confirm
+                                </Button>
+                                <Button
+                                    onClick={() =>
+                                        handleDeleteCancel(deleteType)
+                                    }
+                                >
+                                    Cancel
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 )}{" "}

@@ -1,0 +1,21 @@
+.loaderwrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 92vh;
+}
+
+.loadercomponent {
+    height: 5em;
+    width: 5em;
+    border: 11px solid;
+    border-top-color: red;
+    border-radius: 50%;
+    animation: spin 0.5s infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
