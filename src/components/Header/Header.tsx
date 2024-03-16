@@ -1,6 +1,6 @@
-"use client"
+"use client";
 // styles
-import styles from "./Header.module.css"
+import styles from "./Header.module.css";
 
 import Link from "next/link";
 import { Button } from "@radix-ui/themes";
@@ -8,13 +8,14 @@ import { Button } from "@radix-ui/themes";
 import { Avatar, Flex, IconButton, Text } from "@radix-ui/themes";
 
 // icons
-import { SunIcon, MoonIcon } from '@radix-ui/react-icons'
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import { ThemeMode, useThemeStore } from "@/context/ThemeState";
+
 export default function Header() {
     const { theme, toggleTheme } = useThemeStore();
     const renderThemeIcon = () => {
         if (theme === ThemeMode.LIGHT) {
-            return <SunIcon />
+            return <SunIcon />;
         }
         return <MoonIcon />
     }
